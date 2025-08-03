@@ -26,7 +26,7 @@ Laravel環境構築
     ・Fortify 1.19.1  
 
 ##ER図  
-    ![ER図](../src/er-diagram.png)  
+    ![ER図](src/er-diagram.png)  
 ##URL  
     ・開発環境:http://localhost/  
     ・phpMyAdmin:http://localhost:8080/  
