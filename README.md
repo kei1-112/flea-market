@@ -1,6 +1,6 @@
 #coachtechフリマ
 
-##環境構築  
+##環境構築<br>
 Dockerビルド  
     1.git clone git@github.com:coachtech-material/laravel-docker-template.git  
     2.docker-composer.ymlのmysqlイメージにplatform: linux/amd64を追記  
