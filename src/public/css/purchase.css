@@ -1,0 +1,112 @@
+.main{
+    display: flex;
+    padding-bottom:50px;
+}
+
+.main__left{
+    width:65%;
+}
+
+.left__inner{
+    width:80%;
+    margin: 10% auto 0 auto;
+}
+
+.item__description{
+    display: flex;
+}
+
+.item__img{
+    width:25%;
+    background-color: rgb(192, 191, 191);
+    aspect-ratio: 1 / 1;
+}
+
+.item__name-price{
+    margin-left:10%;
+}
+
+.item__name{
+    font-weight:bolder;
+}
+
+.item__price{
+    margin-top:15%;
+}
+
+.horizon-line{
+    border:solid 0.8px #000000;
+    margin-top:8%;
+    width:100%;
+}
+
+.pay__way{
+    margin:5% 0 0 5%;
+    font-weight:bolder;
+}
+
+.pay__select-box{
+    margin:8% 0  0 10%;
+}
+
+.main__right{
+    width:35%;
+}
+
+.address{
+    display:flex;
+    margin-top:5%;
+    justify-content: space-between;
+}
+
+.address__title{
+    margin-left:5%;
+    font-weight: bolder;
+}
+
+.address__change{
+    margin-right:5%;
+}
+
+.address__change--link{
+    color:#0474cc;
+    text-decoration: none;
+}
+
+.address__post-num{
+    margin:5% 0  0 10%;
+    font-weight: bold;
+}
+
+.address__detail{
+    font-weight: bold;
+    margin:1% 0  0 10%;
+}
+.table__payment{
+    margin-top:20%;
+    width:80%;
+}
+.table__row{
+    border: 1px solid #000000;
+    padding:10% 0;
+}
+.table__header{
+    text-align: left;
+    padding:10% 0 10% 10%;
+    font-weight: lighter;
+}
+
+.table__detail{
+    padding-left: 3%;
+}
+
+.button__submit{
+    width:80%;
+    margin-top:12%;
+    padding:2%;
+    background-color: #ff5555;
+    color:white;
+    border:none;
+    border-radius:3px;
+    font-weight:bold;
+}

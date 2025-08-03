@@ -1,0 +1,35 @@
+.main__tab{
+    display: flex;
+    margin-top:40px;
+}
+
+.main__tab--recommend{
+    padding-left:12%;
+    color:#6f6f6f;
+    font-weight: bold;
+}
+
+.main__tab--my-list{
+    padding-left: 4%;
+    color:#ff2222;
+    font-weight: bold;
+}
+
+.main__horizon-line{
+    border:solid 0.8px #6f6f6f;
+    margin-top:3px;
+    width:100vw;
+}
+
+.main__items{
+    display: flex;
+    justify-content: space-between;
+    width:95%;
+}
+
+.main__item{
+    background-color: rgb(171, 171, 171);
+    width:25%;
+    margin:5% 0 0 5%;
+    aspect-ratio: 1 / 1;
+}

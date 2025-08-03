@@ -1,0 +1,178 @@
+.main{
+    display: flex;
+    padding-bottom:50px;
+}
+
+.main__left{
+    width:50%;
+}
+
+.main__right{
+    width:50%;
+}
+
+.left__item-img{
+    width:60%;
+    margin: 10% auto;
+    background-color: rgb(192, 191, 191);
+    aspect-ratio: 1 / 1;
+}
+
+.right__item-description{
+    margin-top:10%;
+}
+
+.right__item-description--name{
+    font-weight: bold;
+}
+
+.right__item-description--bland{
+    font-size: 10px;
+}
+
+.right__item-description--price{
+    margin-top:2%;
+}
+
+.right__item-action{
+    display: flex;
+    margin-left:4%;
+}
+
+.fav__icon{
+    font-size:20px;
+}
+.fav__num{
+    font-size:7px;
+    font-weight:bold;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+.right__item-action--comment{
+    margin-left:4%;
+    margin-top:1%;
+}
+
+.comment__icon{
+    width:15px;
+    height:15px;
+    background: #ffffff;
+    border:solid 1px #000000;
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size:3px;
+}
+
+.comment__icon::after{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    content: "";
+    margin-left: -1px;
+    border: 1.5px solid transparent;
+    border-top: 5px solid #000000;
+}
+
+.comment__num{
+    font-size:7px;
+    font-weight:bold;
+    text-align: center;
+}
+
+.button__submit{
+    width:70%;
+    margin-top:3%;
+    padding:2%;
+    background-color: #ff5555;
+    color:white;
+    border:none;
+    border-radius:3px;
+    font-weight:bold;
+}
+
+.right__item-description--description{
+    margin-top:3%;
+    font-weight:bold;
+}
+
+.right__item-description--sentence{
+    font-size:smaller;
+}
+
+.right__item-information{
+    margin-top:8%;
+    font-weight:bold;
+}
+
+.item__category{
+    margin-top:2%;
+    display: flex;
+    font-size: smaller;
+}
+
+.item__category__title{
+    font-weight: bold;
+}
+
+.item__category__category{
+    margin-left:2%;
+    padding:1px 20px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+}
+
+.item__condition{
+    margin-top:2%;
+    display: flex;
+    font-size: smaller;
+}
+
+.item__condition__title{
+    font-weight: bold;
+}
+
+.item__condition__condition{
+    margin-left:5%;
+}
+.item__comment{
+    margin-top:8%;
+    font-weight:bold;
+    color:#5f5f5f;
+}
+
+.comment__sender{
+    display: flex;
+    margin-top:3%
+}
+
+.comment__sender--icon{
+    height:30px;
+    width:30px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+}
+
+.comment__sender--name{
+    margin-left:3%;
+}
+
+.comment__input{
+    width:70%;
+    height:100px;
+}
+
+.item__comment-sentence{
+    margin-top:3%;
+    background-color: #e5e5e5;
+    padding:5px 0 5px 5px;
+    width:70%;
+    font-size:smaller;
+}
+
+.item__comment--send{
+    margin-top: 5%;
+    font-weight: bold;
+}

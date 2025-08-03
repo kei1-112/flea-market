@@ -1,0 +1,66 @@
+.main__profile{
+    width:60%;
+    margin:5% auto;
+    display: flex;
+}
+
+.profile__icon{
+    width:15%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #b6b5b5;
+}
+
+.profile__name{
+    font-weight: bold;
+    margin: auto 0 auto 10%;
+}
+
+.profile__update{
+    margin: auto 0 auto 30%;
+    border: solid 1px #ff5555;
+    border-radius: 5px;
+    padding:1% 1.5%;
+}
+
+.profile__update--link{
+    color:#ff5555;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.main__tab{
+    display: flex;
+    margin-top:40px;
+}
+
+.main__tab--sell{
+    padding-left:12%;
+    color:#6f6f6f;
+    font-weight: bold;
+}
+
+.main__tab--buy{
+    padding-left: 4%;
+    color:#ff2222;
+    font-weight: bold;
+}
+
+.main__horizon-line{
+    border:solid 0.8px #6f6f6f;
+    margin-top:3px;
+    width:100vw;
+}
+
+.main__items{
+    display: flex;
+    justify-content: space-between;
+    width:95%;
+}
+
+.main__item{
+    background-color: rgb(171, 171, 171);
+    width:25%;
+    margin:5% 0 0 5%;
+    aspect-ratio: 1 / 1;
+}
