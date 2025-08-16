@@ -26,3 +26,4 @@ Route::get('/purchase/address', [ItemController::class, 'updateAddress']);
 Route::get('/sell', [ItemController::class, 'sell']);
 Route::get('/mypage', [UserController::class, 'showProfile']);
 Route::get('/mypage/profile', [UserController::class, 'setProfile']);
+Route::post('/login', [UserController::class, 'login'])->name('login');

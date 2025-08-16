@@ -6,19 +6,29 @@
 
 @section('content')
 <div class="main__title">ログイン</div>
-        <form class="main__forms">
+        <form class="main__forms" action="{{ route('login') }}"   method="post">
         @csrf
             <div class="main__form">
                 <div class="main__form--item">メールアドレス</div>
                 <div class="main__form--input">
-                    <input type="email" class="form__input">
+                    <input type="text" class="form__input" name="email">
                 </div>
+            </div>
+            <div class="error">
+            @if($errors->has('email'))
+            {{$errors->first('email')}}
+            @endif
             </div>
             <div class="main__form">
                 <div class="main__form--item">パスワード</div>
                 <div class="main__form--input">
-                    <input type="password" class="form__input">
+                    <input type="password" class="form__input" name="password">
                 </div>
+            </div>
+            <div class="error">
+            @if($errors->has('password'))
+            {{$errors->first('password')}}
+            @endif
             </div>
             <button class="main__button" type="submit">ログインする</button>
         </form>

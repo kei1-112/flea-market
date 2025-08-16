@@ -21,7 +21,30 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'post_number',
+        'address',
+        'building',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'purchaser_id');
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'seller_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'sender_id');
+    }
+
+    public function mylists()
+    {
+        return $this->hasMany(MyList::class, 'user_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
