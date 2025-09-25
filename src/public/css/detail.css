@@ -41,6 +41,15 @@
 
 .fav__icon{
     font-size:20px;
+    background-color: #ffffff;
+    border:none;
+}
+
+.fav__icon--my-list{
+    font-size: 20px;
+    background-color: #ffffff;
+    color:#FF4D6D;
+    border: none;
 }
 .fav__num{
     font-size:7px;
@@ -74,6 +83,11 @@
     margin-left: -1px;
     border: 1.5px solid transparent;
     border-top: 5px solid #000000;
+}
+
+.icon-img{
+    width:100%;
+    border-radius: 50%;
 }
 
 .comment__num{
@@ -110,6 +124,7 @@
 .item__category{
     margin-top:2%;
     display: flex;
+    flex-wrap: wrap;
     font-size: smaller;
 }
 
@@ -118,7 +133,7 @@
 }
 
 .item__category__category{
-    margin-left:2%;
+    margin:0 0 2% 2%;
     padding:1px 20px;
     background-color: #d9d9d9;
     border-radius: 10px;

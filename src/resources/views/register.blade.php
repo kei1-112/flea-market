@@ -6,12 +6,12 @@
 
 @section('content')
 <div class="main__title">会員登録</div>
-    <form class="main__forms" action="register" method="post">
+    <form class="main__forms" action="/register" method="post">
         @csrf
         <div class="main__form">
             <div class="main__form--item">ユーザー名</div>
             <div class="main__form--input">
-                <input type="text" name="name" class="form__input">
+                <input type="text" name="name" class="form__input" value="{{ old('name') }}">
             </div>
         </div>
         <div class="error">
@@ -22,7 +22,7 @@
         <div class="main__form">
             <div class="main__form--item">メールアドレス</div>
             <div class="main__form--input">
-                <input type="email" name="email" class="form__input">
+                <input type="email" name="email" class="form__input" value="{{ old('email') }}">
             </div>
         </div>
         <div class="error">

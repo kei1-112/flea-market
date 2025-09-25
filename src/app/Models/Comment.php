@@ -10,14 +10,14 @@ class Comment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'content',
+        'content', 'sender_id', 'item_id'
     ];
 
-    public function user(){
-        return $this->belongsTo(User::class, sender_id);
+    public function sender(){
+        return $this->belongsTo(User::class, 'sender_id');
     }
 
     public function item(){
-        return $this->belongsTo(Item::class, item_id);
+        return $this->belongsTo(Item::class, 'item_id');
     }
 }

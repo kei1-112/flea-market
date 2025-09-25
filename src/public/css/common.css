@@ -13,8 +13,17 @@
 .header__logo{
     width:20%;
 }
-.header__logo--img{
+.header__img {
+    width: 100%;
+}
+
+.img{
     width:100%;
+    aspect-ratio: 1/1;
+}
+
+.main__item--img{
+    height:100%;
 }
 
 .header__search-form{
@@ -38,11 +47,18 @@
     padding: 5px 10px;
 }
 
-.header__button--submit{
+.header__button--logout{
     background-color: #000000;
     border:none;
     color:#ffffff;
-    font-size: large;
+    font-size: 15px;
+}
+
+.header__button--login{
+    background-color: #000000;
+    text-decoration: none;
+    color:#ffffff;
+    font-size: 15px;
 }
 
 .header__mypage {
@@ -52,7 +68,7 @@
 .header__button--mypage{
     text-decoration: none;
     color:#ffffff;
-    font-size:large;
+    font-size: 15px;
 }
 
 .header__exhibit{
@@ -64,4 +80,9 @@
 .header__button--exhibit{
     text-decoration: none;
     color: #000000;
+}
+
+.error {
+    color: red;
+    text-align: left;
 }

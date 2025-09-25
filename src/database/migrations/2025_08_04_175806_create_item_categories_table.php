@@ -17,9 +17,6 @@ class CreateItemCategoriesTable extends Migration
             $table->id();
             $table->foreignId('item_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->string('destination_post_number');
-            $table->string('destination_address');
-            $table->string('destination_building');
             $table->timestamps();
         });
     }

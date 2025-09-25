@@ -11,7 +11,7 @@
             <div class="main__form">
                 <div class="main__form--item">メールアドレス</div>
                 <div class="main__form--input">
-                    <input type="text" class="form__input" name="email">
+                    <input type="text" class="form__input" name="email" value="{{ old('email') }}">
                 </div>
             </div>
             <div class="error">

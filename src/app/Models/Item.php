@@ -10,24 +10,26 @@ class Item extends Model
     use HasFactory;
 
     protected $fillable = [
+        'seller_id',
         'sold_flag',
         'item_img',
         'item_name',
         'brand_name',
         'price',
-        'item_condition',
+        'item_description',
+        'item_condition'
     ];
 
     public function users(){
-        return $this->belongsTo(User::class, seller_id);
+        return $this->belongsTo(User::class, 'seller_id');
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class, sender_id);
+        return $this->hasMany(Comment::class, 'sender_id');
     }
 
     public function mylists(){
-        return $this->hasMany(MyList::class, user_id);
+        return $this->hasMany(MyList::class, 'user_id');
     }
 
     public function item_categories()
@@ -35,7 +37,7 @@ class Item extends Model
         return $this->hasMany(ItemCategories::class, 'item_id');
     }
 
-    public function orders_detail()
+    public function order_details()
     {
         return $this->hasOne(OrderDetail::class, 'item_id');
     }

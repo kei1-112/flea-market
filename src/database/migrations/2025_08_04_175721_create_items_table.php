@@ -19,8 +19,9 @@ class CreateItemsTable extends Migration
             $table->integer('sold_flag');
             $table->string('item_img');
             $table->string('item_name');
-            $table->string('brand_name');
+            $table->string('brand_name')->nullable();
             $table->integer('price');
+            $table->string('item_description');
             $table->string('item_condition');
             $table->timestamps();
         });

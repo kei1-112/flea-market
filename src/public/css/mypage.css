@@ -11,13 +11,22 @@
     background-color: #b6b5b5;
 }
 
+.icon-img{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
 .profile__name{
+    width:45%;
     font-weight: bold;
-    margin: auto 0 auto 10%;
+    margin: auto 0 auto 5%;
 }
 
 .profile__update{
-    margin: auto 0 auto 30%;
+    width:40%;
+    text-align: center;
+    margin: auto 0;
     border: solid 1px #ff5555;
     border-radius: 5px;
     padding:1% 1.5%;
@@ -29,21 +38,24 @@
     font-weight: bold;
 }
 
-.main__tab{
+.main__tabs {
     display: flex;
-    margin-top:40px;
+    margin-top: 40px;
 }
 
-.main__tab--sell{
-    padding-left:12%;
-    color:#6f6f6f;
+.main__tab {
+    padding-left: 8%;
     font-weight: bold;
 }
 
-.main__tab--buy{
-    padding-left: 4%;
-    color:#ff2222;
-    font-weight: bold;
+.tab__link--selected {
+    color: #ff2222;
+    text-decoration: none;
+}
+
+.tab__link--unselected {
+    color: #6f6f6f;
+    text-decoration: none;
 }
 
 .main__horizon-line{
@@ -52,15 +64,36 @@
     width:100vw;
 }
 
-.main__items{
-    display: flex;
-    justify-content: space-between;
-    width:95%;
+.main__items {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 90%;
+    margin: 5% auto;
+    box-sizing: border-box;
 }
 
-.main__item{
-    background-color: rgb(171, 171, 171);
-    width:25%;
-    margin:5% 0 0 5%;
+.main__item {
+    position: relative;
     aspect-ratio: 1 / 1;
+}
+
+.sold-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: rgba(128, 128, 128, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.main__item--name--link {
+    text-decoration: none;
+    color: #000000;
 }

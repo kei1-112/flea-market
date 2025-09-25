@@ -10,17 +10,18 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+        'purchaser_id',
         'payment_method',
-        'destination_post_num',
+        'destination_post_number',
         'destination_address',
-        'destination_building',
+        'destination_building'
     ];
 
     public function users(){
-        return $this->belongsTo(User::class, purchaser_id);
+        return $this->belongsTo(User::class, 'purchaser_id');
     }
 
-    public function orders_detail(){
-        return $this->hasMany(OrderDetail::class, order_id);
+    public function order_details(){
+        return $this->hasMany(OrderDetail::class, 'order_id');
     }
 }

@@ -26,6 +26,24 @@
     aspect-ratio: 3 / 1;
 }
 
+.img__upload{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input__img{
+    display: none;
+}
+
+.preview__img{
+    width:40%;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    display: none;
+}
+
 .img__choice{
     position: absolute;
     left: 50%;
@@ -38,8 +56,9 @@
     font-weight: bold;
 }
 
-.item__detail{
+.sub__title--large{
     font-weight: bolder;
+    font-size: large;
     color:#5f5f5f;
     margin-top:10%;
 }
@@ -49,19 +68,26 @@
     margin-top:1%;
     width:100%;
 }
+.checkbox{
+    display: none;
+}
 
-.categories__row{
+.categories{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top:3%;
     padding-left:3%;
 }
 
-.categories__row:last-of-type{
+.categories:last-of-type {
     display: flex;
     justify-content: left;
-    margin-top:3%;
-    padding-left:3%;
+}
+
+.categories::after{
+    content: "";
+    flex: auto;
 }
 
 .category{
@@ -70,15 +96,13 @@
     border: solid 1.5px #ff5755;
     border-radius: 10px;
     padding:0.5% 1.5%;
+    margin:0 2% 2% 0;
 }
 
-.category__baby-kids{
-    font-size: x-small;
-    color:#ff5755;
-    border: solid 1.5px #ff5755;
-    border-radius: 10px;
-    padding:0.5% 1.5%;
-    margin-left:5%;
+.checkbox:checked+.category {
+    background-color: #ff5755;
+    color: #fff;
+    border-color: #ff5755;
 }
 
 .form{
