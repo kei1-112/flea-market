@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MyListController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\EmailVerificationController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
@@ -31,7 +33,7 @@ Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->nam
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'send'])->name('verification.send');
 
-Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
+Route::get('/email/verify/{idEm}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 
 Route::get('/item:{itemId}', [ItemController::class, 'detail']);
 Route::get('/search', [ItemController::class, 'search'])->name('search');
@@ -72,3 +74,34 @@ Route::middleware('auth')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::post('/comments', [CommentController::class, 'store']);
 });
+
+Route::middleware('auth')->group(function(){
+    Route::post('/comments', [CommentController::class, 'store']);
+});
+Route::middleware('auth')->group(function(){
+    Route::get('/chat:{itemId}', [ChatController::class, 'chat']);
+});
+
+Route::middleware('auth')->group(function(){
+    Route::post('/chat', [ChatController::class, 'store']);
+});
+
+Route::middleware('auth')->group(function(){
+    Route::get('/chat/edit', [ChatController::class, 'edit']);
+});
+
+Route::middleware('auth')->group(function(){
+    Route::post('/chat/edit', [ChatController::class, 'update']);
+});
+
+Route::middleware('auth')->group(function(){
+    Route::post('/chat/delete', [ChatController::class, 'destroy']);
+});
+
+Route::middleware('auth')->group(function(){
+    Route::post('/evaluation', [EvaluationController::class, 'store']);
+});
+
+
+Route::get('/success', [OrderController::class, 'success'])->name('success');
+Route::get('/cancel', [OrderController::class, 'cancel'])->name('cancel');

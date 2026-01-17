@@ -16,11 +16,12 @@ class ItemTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = User::all();
+        $user1 = User::where('email', 'test@example.com')->first();
+        $user2 = User::where('email', 'test2@example.com')->first();
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Armani+Mens+Clock.jpg',
+            'seller_id' =>$user1->id,
+            'item_img' => 'images/sample/Armani+Mens+Clock.jpg',
             'item_name' => '腕時計',
             'brand_name' => 'test',
             'price' => 15000,
@@ -30,8 +31,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/HDD+Hard+Disk.jpg',
+            'seller_id' =>$user1->id,
+            'item_img' => 'images/sample/HDD+Hard+Disk.jpg',
             'item_name' => 'HDD',
             'brand_name' => 'test',
             'price' => 5000,
@@ -41,8 +42,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/iLoveIMG+d.jpg',
+            'seller_id' =>$user1->id,
+            'item_img' => 'images/sample/iLoveIMG+d.jpg',
             'item_name' => '玉ねぎ3束',
             'brand_name' => 'test',
             'price' => 300,
@@ -52,8 +53,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Leather+Shoes+Product+Photo.jpg',
+            'seller_id' =>$user1->id,
+            'item_img' => 'images/sample/Leather+Shoes+Product+Photo.jpg',
             'item_name' => '革靴',
             'brand_name' => 'test',
             'price' => 4000,
@@ -63,8 +64,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Living+Room+Laptop.jpg',
+            'seller_id' =>$user1->id,
+            'item_img' => 'images/sample/Living+Room+Laptop.jpg',
             'item_name' => 'ノートPC',
             'brand_name' => 'test',
             'price' => 45000,
@@ -74,8 +75,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Music+Mic+4632231.jpg',
+            'seller_id' =>$user2->id,
+            'item_img' => 'images/sample/Music+Mic+4632231.jpg',
             'item_name' => 'マイク',
             'brand_name' => 'test',
             'price' => 8000,
@@ -85,8 +86,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Purse+fashion+pocket.jpg',
+            'seller_id' =>$user2->id,
+            'item_img' => 'images/sample/Purse+fashion+pocket.jpg',
             'item_name' => 'ショルダーバッグ',
             'brand_name' => 'test',
             'price' => 5000,
@@ -96,8 +97,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Tumbler+souvenir.jpg',
+            'seller_id' =>$user2->id,
+            'item_img' => 'images/sample/Tumbler+souvenir.jpg',
             'item_name' => 'タンブラー',
             'brand_name' => 'test',
             'price' =>500 ,
@@ -107,8 +108,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/Waitress+with+Coffee+Grinder.jpg',
+            'seller_id' =>$user2->id,
+            'item_img' => 'images/sample/Waitress+with+Coffee+Grinder.jpg',
             'item_name' => 'コーヒーミル',
             'brand_name' => 'test',
             'price' => 4000,
@@ -118,8 +119,8 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->insert($param);
         $param = [
             'sold_flag' => 0,
-            'seller_id' =>$users->random()->id,
-            'item_img' => 'storage/MakeUpSet.jpg',
+            'seller_id' =>$user2->id,
+            'item_img' => 'images/sample/外出メイクアップセット.jpg',
             'item_name' => 'メイクセット',
             'brand_name' => 'test',
             'price' => 2500,

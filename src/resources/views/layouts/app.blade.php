@@ -14,7 +14,7 @@
         <div class="header__inner">
             <div class="header__logo">
                 <a href="/">
-                    <img src="{{asset('storage/logo.svg')}}" alt="" class="header__img">
+                    <img src="{{asset('images/logo.svg')}}" alt="" class="header__img">
                 </a>
             </div>
             <div class="header__search-form">

@@ -3,25 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\AddressRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
+use App\Http\Requests\ChatRequest;
 use App\Models\Item;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Chat;
-use App\Models\Evaluation;
 
-class UserController extends Controller
+class ChatController extends Controller
 {
-    public function showProfile(Request $request){
-        $param = $request->tab;
+    public function chat(Request $request ,$itemId){
+        $editChatId =$request->input(['edit_chat_id']);
+
+        $item = Item::where('id', $itemId)->first();
+        $itemId = $item->id;
         $userId = Auth::id();
         $user = User::where('id', $userId)->first();
-        $sellItems = Item::where('seller_id', $userId)->get();
-        $purchaseItems = Item::whereHas('order_details.orders', function($query) use ($userId){
-            $query->where('purchaser_id', $userId);
-        })->get();
+        $param = null;
+
+        $evaluationFlag = $request->input(['evaluation_flag']);
+
+        $clientId = null;
+        $orderDetailId = OrderDetail::where('item_id', $itemId)
+                                    ->value('order_id');
+
+        $orderId = Order::where('id', $orderDetailId)
+                            ->value('id');
+        $order = Order::find($orderId);
+
+                                    //商品の購入者か出品者か判定する
+        if($item->seller_id == $userId){
+            //出品者のとき
+            $clientId = Order::where('id', $orderDetailId)
+                                ->value('purchaser_id');
+            $param = 0;
+        }else{
+            //購入者の時
+            $clientId = $item->seller_id;
+            $param = 1;
+        }
+
+        $client = User::where('id', $clientId)->first();
+
         $purchasingItemId = Item::join('order_details', 'items.id', '=', 'order_details.item_id')
                                 ->join('orders', 'order_details.order_id', '=', 'orders.id')
                                 ->where('orders.purchaser_id', $userId)
@@ -51,10 +75,11 @@ class UserController extends Controller
                                             ->get()
                                             ->keyBy('item_id');
 
-        foreach ($purchasingItems as $item) {
-            $itemId = $item->id;
-            $item->newMessageCount  = $purchasingItemsChatSummary[$itemId]->unread_count ?? 0;
-            $item->lastReceivedTime = $purchasingItemsChatSummary[$itemId]->last_received_time ?? null;
+
+        foreach ($purchasingItems as $purchasingItem) {
+            $itemId = $purchasingItem->id;
+            $purchasingItem->newMessageCount  = $purchasingItemsChatSummary[$itemId]->unread_count ?? 0;
+            $purchasingItem->lastReceivedTime = $purchasingItemsChatSummary[$itemId]->last_received_time ?? null;
         }
 
         $sellingItemId = Item::join('order_details', 'items.id', '=', 'order_details.item_id')
@@ -86,73 +111,82 @@ class UserController extends Controller
                                             ->get()
                                             ->keyBy('item_id');
 
-        foreach($sellingItems as $item) {
-            $itemId = $item->id;
-            $item->newMessageCount  = $sellingItemsChatSummary[$itemId]->unread_count ?? 0;
-            $item->lastReceivedTime = $sellingItemsChatSummary[$itemId]->last_received_time ?? null;
-        }
+
         $dealingItems = $sellingItems->merge($purchasingItems);
+
         $dealingItems = collect($dealingItems)
                         ->sortByDesc(function ($item) {
                             return $item->lastReceivedTime ?? '1970-01-01 00:00:00';
                         })
                         ->values();
-        $dealingCount = 0;
-        foreach($dealingItems as $item){
-            $dealingCount = $dealingCount + $item->newMessageCount;
-        }
 
-        $evaluations = Evaluation::where('user_id', $userId)
-                                    ->pluck('evaluation');
+        //チャット情報の取得
+        $chats = Chat::where('order_id', $orderId)->get();
 
-        if ($evaluations->count() === 0) {
-            $evaluation = null;
-        } else {
-            $evaluation = round($evaluations->sum() / $evaluations->count());
-        }
-        return view('mypage', compact('user', 'sellItems', 'purchaseItems','dealingItems','dealingCount', 'evaluation', 'param'));
-    }
-
-    public function setProfile(){
-        $userId = Auth::id();
-        $user = User::where('id', $userId)->first();
-        return view('set_profile', compact('user'));
-    }
-
-    public function update(AddressRequest $request){
-        $userId = Auth::id();
-        $user = $request->all();
-        unset($user['_token']);
-        if($request->hasFile('profile_img')){
-            $filename = $request->file('profile_img')->getClientOriginalName() . '_' . time();
-            $request->file('profile_img')->storeAs('public', $filename);
-            $user['profile_img'] = 'storage/' . $filename;
-        }
-        User::find($userId)->update($user);
-        return redirect()->action([ItemController::class, 'index']);
-    }
-
-    public function login(LoginRequest $request)
-    {
-        $request->validated();
-
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            if (! Auth::user()->hasVerifiedEmail()) {
-                Auth::logout();
-                return back()->withErrors([
-                    'email' => 'メール認証を完了してください。',
-                ])->withInput();
+        //編集するチャットかを判定
+        foreach($chats as $chat){
+            if($chat->id != $editChatId){
+                $chat['edit_flag'] = 0;
             }
-
-            return redirect()->intended('/');
+            else{
+                $chat['edit_flag'] = 1;
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'ログイン情報が登録されていません。',
-        ])->withInput();
+        //新規通知を既読にする
+        if($param == 0){
+            Chat::whereIn('id', $chats->pluck('id'))
+                ->where('sender_flag', 1)
+                ->where('unread_flag', 0)
+                ->update(['unread_flag' => 1]);
+        }else{
+            Chat::whereIn('id', $chats->pluck('id'))
+                ->where('sender_flag', 0)
+                ->where('unread_flag', 0)
+                ->update(['unread_flag' => 1]);
+        }
+
+        //購入者側の評価が終わっている時、出品者側の評価用のユーザーIDを渡す
+        if($order['dealing_completed_flag_purchaser'] == 1){
+            $userId = $order['purchaser_id'];
+        }
+
+        return view('chat', compact('item', 'user','client', 'dealingItems', 'orderId', 'userId', 'order', 'chats','evaluationFlag', 'param'));
+    }
+
+    public function store(ChatRequest $request){
+        $itemId = $request->input('item_id');
+        $chat = $request->only(['order_id', 'message']);
+
+        $chat['img'] = null;
+
+        $tmpFileName = $request->file('item_img');
+        if($tmpFileName != null){
+            $fileName = $tmpFileName->getClientOriginalName() . '_' . time();
+            $request->file('item_img')->storeAs('public', $fileName);
+            $chat['img'] = 'storage/' . $fileName;
+        }
+
+        $chat['sender_flag'] = $request->input('param');
+        $chat['unread_flag'] = 0;
+
+        Chat::create($chat);
+
+        return redirect('/chat:' . $itemId);
+    }
+
+    public function update(Request $request){
+        $editChatId = $request->input('edit_chat_id');
+        $itemId = $request->input('item_id');
+        $chat['message'] = $request->input('message');
+        Chat::find($editChatId)->update($chat);
+        return redirect('/chat:' . $itemId);
+    }
+
+    public function destroy(Request $request){
+        $chatId = $request->input('chat_id');
+        $itemId = $request->input('item_id');
+        Chat::destroy($chatId);
+        return redirect('/chat:' . $itemId);
     }
 }

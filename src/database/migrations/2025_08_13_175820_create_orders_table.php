@@ -20,6 +20,8 @@ class CreateOrdersTable extends Migration
             $table->string('destination_post_number');
             $table->string('destination_address');
             $table->string('destination_building')->nullable();
+            $table->integer('dealing_completed_flag_seller'); //0:取引未完了 1:取引完了済
+            $table->integer('dealing_completed_flag_purchaser'); //0:取引未完了 1:取引完了済
             $table->timestamps();
         });
     }

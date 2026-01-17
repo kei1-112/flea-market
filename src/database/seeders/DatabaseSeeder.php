@@ -13,14 +13,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // ログイン確認用のユーザーを1件だけ作成
+        // ログイン確認用のユーザーを2件作成
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('password'),
             'email_verified_at' => now(),
         ]);
-        \App\Models\User::factory(9)->create();
+
+        \App\Models\User::factory()->create([
+            'name' => 'Test User2',
+            'email' => 'test2@example.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Test User3',
+            'email' => 'test3@example.com',
+            'password' => bcrypt('password'),
+            'email_verified_at' => now(),
+        ]);
         $this->call(ItemTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
     }

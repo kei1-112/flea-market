@@ -14,7 +14,9 @@ class Order extends Model
         'payment_method',
         'destination_post_number',
         'destination_address',
-        'destination_building'
+        'destination_building',
+        'dealing_completed_flag_purchaser',
+        'dealing_completed_flag_seller'
     ];
 
     public function users(){
@@ -23,5 +25,9 @@ class Order extends Model
 
     public function order_details(){
         return $this->hasMany(OrderDetail::class, 'order_id');
+    }
+
+    public function chat(){
+        return $this->hasMany(Chat::class, 'order_id');
     }
 }

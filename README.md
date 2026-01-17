@@ -59,8 +59,8 @@
 ![ER図](src/er-diagram.png)
 
 ## ログイン情報
-- メールアドレス:test@example.com
-- パスワード:password
+- メールアドレス:test@example.com, test2@example.com, test3@example.com
+- パスワード:password(全ユーザー)
 
 ## URL
 
