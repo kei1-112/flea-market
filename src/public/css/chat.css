@@ -15,22 +15,26 @@
     flex: 0 0 15%;
     height: 100%;
     background-color: #868686;
-    padding: 5px 0 0 15px;
 }
 
 .side__navigation--content{
     color: #ffffff;
     font-weight: bold;
     margin-bottom: 20px;
+    padding: 5px 0 0 15px;
 }
 
 .side__navigation--other-deals{
-    margin-bottom:5px;
+    margin:20px 15px;
+    background-color: #eeefec;
+    border-radius: 3px;
+    text-align: center;
 }
 
 .other-details__link{
     color: #000;
     text-decoration: none;
+    font-size:10px;
 }
 
 .main__content {
